@@ -1,6 +1,7 @@
 package com.WolframChallenge;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedCondition;
@@ -8,6 +9,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.NoSuchElementException;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
@@ -33,6 +35,18 @@ public class PageObject {
         driver.manage().timeouts().implicitlyWait(seconds, TimeUnit.SECONDS);
     }
 
+    public void switchTabRight(Integer num){
+        for(int idx = 0; idx < num; idx++) {
+            driver.findElement(By.cssSelector("body")).sendKeys(Keys.chord(Keys.CONTROL, Keys.PAGE_DOWN));
+        }
+    }
+
+    public void switchTabLeft(Integer num){
+        for(int idx = 0; idx < num; idx++) {
+            driver.findElement(By.cssSelector("body")).sendKeys(Keys.chord(Keys.CONTROL, Keys.PAGE_UP));
+        }
+    }
+
     public void waitUntilElementCount(By by, Integer desiredCount, Integer timeout) {
         WebDriverWait wait = new WebDriverWait(driver, timeout);
         wait.until(new ExpectedCondition<Boolean>() {
@@ -44,10 +58,6 @@ public class PageObject {
                     return false;
             }
         });
-    }
-
-    public void switchTab(Integer index){
-
     }
 
     public Integer getElementCount(By by){

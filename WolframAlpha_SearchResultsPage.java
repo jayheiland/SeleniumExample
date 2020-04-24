@@ -11,7 +11,7 @@ public class WolframAlpha_SearchResultsPage extends PageObject{
     final public By locator_PlainTextButton = By.xpath("//button/span/span[contains(text(),'Plain Text')]");
     final public By locator_OpenInNotebookButton = By.cssSelector("button[class='_10um4 _2XRvV _1BfJ4']");
     final public By locator_ResultCell = By.className("_2z545");
-    final public By locator_pageIdentifier = By.id("__next");
+    final public By locator_pageIdentifier = By.className("_2hZZZ");
 
     //plain text interface locators
     final public By locator_PlainTextInterface_Header = By.xpath("//span[contains(text(), 'Wolfram|Alpha Copyable Plain Text')]");
@@ -25,7 +25,7 @@ public class WolframAlpha_SearchResultsPage extends PageObject{
     public WolframCloud_Notebook goToComputableNotebook(Integer cellIndex) {
         openPlainTextOptionForCell(cellIndex);
         driver.findElement(locator_OpenInNotebookButton).click();
-        WolframCloud_Notebook notebook = new WolframCloud_Notebook(this.driver);
+        WolframCloud_Notebook notebook = new WolframCloud_Notebook(driver);
         return notebook;
     }
 

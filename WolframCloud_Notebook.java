@@ -12,10 +12,11 @@ public class WolframCloud_Notebook extends PageObject{
     final public By locator_CellContent = By.xpath("//div[@class='cell']/div[@class='cell-wrapper']/div[@class='cell-content']/div/div");
     final public By locator_CellPlayButton = By.cssSelector("div[class='TooltipBoxContainer pa TooltipBoxContainer']");
     final public By locator_FastIntroLink = By.className("_3QAPQ7FIKVSAE722rX66Wa");
+    final public By locator_pageIdentifier = By.id("doc");
 
     public WolframCloud_Notebook(WebDriver driver){
         super(driver);
-        waitUntilElementVisible(By.id("doc"), defaultTimeout);
+        waitUntilElementVisible(locator_pageIdentifier, defaultTimeout);
     }
 
     public void executeCell(Integer index){
@@ -28,11 +29,6 @@ public class WolframCloud_Notebook extends PageObject{
     public String getCellContent(Integer index, Integer waitForCellContentCount){
         waitUntilElementCount(locator_CellContent,waitForCellContentCount + unimportantPrecedingCellContentsCount, defaultTimeout);
         List<WebElement> testCellContents = driver.findElements(locator_CellContent);
-        /*System.out.println("Number of desired things: " + testCellContents.size());
-        for (WebElement we : testCellContents) {
-            System.out.println(we.getText());
-            System.out.println("--------------------------------------------------------");
-        }*/
         return testCellContents.get((index + 1) + (unimportantPrecedingCellContentsCount - 1)).getText().replace("\n", "");
     }
 
@@ -43,7 +39,8 @@ public class WolframCloud_Notebook extends PageObject{
     public Wolfram_FastIntroduction goToFastIntroduction(){
         waitUntilElementVisible(locator_FastIntroLink, defaultTimeout);
         driver.findElement(locator_FastIntroLink).click();
-        Wolfram_FastIntroduction intro = new Wolfram_FastIntroduction(this.driver);
+        switchTabRight(3);
+        Wolfram_FastIntroduction intro = new Wolfram_FastIntroduction(driver);
         return intro;
     }
 }

@@ -59,15 +59,15 @@ public class Test_WolframCloud_Notebook {
         softAssert.assertAll();
     }
 
-    @Test
+    /*@Test
     public void searchWolframAlpha_openWolframCloudAndAccessEducationalLinks() {
         DriverHandler masterDriver = new DriverHandler();
         WolframAlpha_LandingPage landingPage = new WolframAlpha_LandingPage(masterDriver.getDriver());
         WolframAlpha_SearchResultsPage resultsPage = landingPage.getSearchResults("2+2");
         WolframCloud_Notebook notebookPage = resultsPage.goToComputableNotebook(0);
-        //Wolfram_FastIntroduction intro = notebookPage.goToFastIntroduction();
+        Wolfram_FastIntroduction intro = notebookPage.goToFastIntroduction();
         shutdown(masterDriver);
-    }
+    }*/
 
     public void shutdown(DriverHandler driver) {
         driver.quit();
