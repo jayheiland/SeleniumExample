@@ -30,7 +30,7 @@ public class WolframAlpha_SearchResultsPage extends PageObject{
     }
 
     public void openPlainTextOptionForCell(Integer cellIndex){
-        waitUntilElementCount(locator_ResultCell, cellIndex + 1, defaultTimeout);
+        waitUntilElementCount(locator_ResultCell, cellIndex + 3, defaultTimeout);
         Actions actions = new Actions(driver);
         actions.moveToElement(driver.findElements(locator_ResultCell).get(cellIndex)).build().perform();
         waitUntilElementVisible(locator_PlainTextButton, defaultTimeout);

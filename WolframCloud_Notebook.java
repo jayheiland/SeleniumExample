@@ -28,14 +28,12 @@ public class WolframCloud_Notebook extends PageObject{
     public String getCellContent(Integer index, Integer waitForCellContentCount){
         waitUntilElementCount(locator_CellContent,waitForCellContentCount + unimportantPrecedingCellContentsCount, defaultTimeout);
         List<WebElement> testCellContents = driver.findElements(locator_CellContent);
-        System.out.println("Number of desired things: " + testCellContents.size());
+        /*System.out.println("Number of desired things: " + testCellContents.size());
         for (WebElement we : testCellContents) {
             System.out.println(we.getText());
             System.out.println("--------------------------------------------------------");
-        }
-        String test1 = testCellContents.get((index + 1) + (unimportantPrecedingCellContentsCount - 1)).getText();
-        String test2 = test1.replace("\n", "");
-        return test2;
+        }*/
+        return testCellContents.get((index + 1) + (unimportantPrecedingCellContentsCount - 1)).getText().replace("\n", "");
     }
 
     public Integer getCellCount(){
