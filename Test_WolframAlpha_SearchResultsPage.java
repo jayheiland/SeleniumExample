@@ -20,6 +20,8 @@ public class Test_WolframAlpha_SearchResultsPage {
         DriverHandler masterDriver = new DriverHandler();
         WolframAlpha_SearchResultsPage resultsPage = new WolframAlpha_LandingPage(masterDriver.getDriver()).getSearchResults("2+2");
         resultsPage.openPlainTextOptionForCell(0);
+        softAssert.assertEquals(resultsPage.getElementCount(resultsPage.locator_PlainTextInterface_Header), (Integer)1);
+        resultsPage.closePlainTextInterface();
         softAssert.assertEquals(resultsPage.getElementCount(resultsPage.locator_PlainTextInterface_Header), (Integer)0);
         shutdown(masterDriver);
         softAssert.assertAll();
@@ -30,7 +32,7 @@ public class Test_WolframAlpha_SearchResultsPage {
         SoftAssert softAssert = new SoftAssert();
         DriverHandler masterDriver = new DriverHandler();
         WolframAlpha_SearchResultsPage resultsPage = new WolframAlpha_LandingPage(masterDriver.getDriver()).getSearchResults("2+2");
-        softAssert.assertFalse(resultsPage.isElementVisible(resultsPage.locator_PlainTextInterface_Header));
+        softAssert.assertEquals(resultsPage.getElementCount(resultsPage.locator_PlainTextInterface_Header), (Integer)0);
         shutdown(masterDriver);
         softAssert.assertAll();
     }

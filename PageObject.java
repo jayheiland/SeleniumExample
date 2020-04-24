@@ -9,6 +9,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.NoSuchElementException;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 
 public class PageObject {
     protected WebDriver driver;
@@ -51,15 +52,5 @@ public class PageObject {
 
     public Integer getElementCount(By by){
         return driver.findElements(by).size();
-    }
-
-    public Boolean isElementVisible(By by){
-        try{
-            waitUntilElementVisible(by, defaultTimeout);
-        }
-        catch (NoSuchElementException e){
-            return false;
-        }
-        return true;
     }
 }

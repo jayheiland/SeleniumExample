@@ -15,6 +15,7 @@ public class WolframAlpha_SearchResultsPage extends PageObject{
 
     //plain text interface locators
     final public By locator_PlainTextInterface_Header = By.xpath("//span[contains(text(), 'Wolfram|Alpha Copyable Plain Text')]");
+    final public By getLocator_PlainTextInterface_CloseButton = By.cssSelector("button[class='_10um4 _3sfTM _7irlU']");
 
     public WolframAlpha_SearchResultsPage(WebDriver driver){
         super(driver);
@@ -32,6 +33,11 @@ public class WolframAlpha_SearchResultsPage extends PageObject{
         waitUntilElementCount(locator_ResultCell, cellIndex + 1, defaultTimeout);
         Actions actions = new Actions(driver);
         actions.moveToElement(driver.findElements(locator_ResultCell).get(cellIndex)).build().perform();
+        waitUntilElementVisible(locator_PlainTextButton, defaultTimeout);
         actions.moveToElement(driver.findElements(locator_PlainTextButton).get(0)).click().build().perform();
+    }
+
+    public void closePlainTextInterface(){
+        driver.findElement(getLocator_PlainTextInterface_CloseButton).click();
     }
 }

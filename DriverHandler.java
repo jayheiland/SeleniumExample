@@ -6,7 +6,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 public class DriverHandler {
     public WebDriver driver;
     public DriverHandler(){
-        System.setProperty("webdriver.gecko.driver", "C:\\Users\\munch\\IdeaProjects\\WolframChallenge\\lib\\geckodriver\\geckodriver.exe");
+        System.setProperty("webdriver.gecko.driver", System.getProperty("user.dir") + "\\lib\\geckodriver\\geckodriver.exe");
         driver = new FirefoxDriver();
     }
 
